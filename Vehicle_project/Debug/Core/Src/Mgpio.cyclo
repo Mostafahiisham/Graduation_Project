@@ -1,0 +1,11 @@
+Mgpio.c:15:6:GPIO_SetMode	5
+Mgpio.c:42:6:GPIO_SetOutputMode	5
+Mgpio.c:66:6:GPIO_SetOutputSpeed	5
+Mgpio.c:91:6:GPIO_SetPinValue	5
+Mgpio.c:114:6:GPIO_SetPullType	5
+Mgpio.c:139:6:GPIO_GetPinValue	5
+Mgpio.c:161:6:GPIO_TogglePinValue	5
+Mgpio.c:180:6:GPIO_SetPortValue	5
+Mgpio.c:198:6:GPIO_SetPortMode	5
+Mgpio.c:217:6:GPIO_SetAtomicPinValue	11
+Mgpio.c:279:6:GPIO_SetAlternateFunc	5

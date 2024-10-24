@@ -1,0 +1,3 @@
+../Core/Src/Stp.c:14:6:STP_Init	8	static
+../Core/Src/Stp.c:25:6:STP_ShiftData	24	static
+../Core/Src/Stp.c:37:6:STP_SendData	8	static

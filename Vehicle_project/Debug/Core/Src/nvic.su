@@ -1,0 +1,4 @@
+../Core/Src/nvic.c:14:4:NVIC_EnableInterrupt	24	static
+../Core/Src/nvic.c:29:4:NVIC_DisableInterrupt	24	static
+../Core/Src/nvic.c:44:4:NVIC_SelectGroupNumber	24	static
+../Core/Src/nvic.c:61:4:NVIC_SetInterruptPriority	24	static

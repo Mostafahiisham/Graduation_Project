@@ -1,0 +1,4 @@
+../Core/Src/DC_Motor.c:19:13:DC_Motor_Init	16	static
+../Core/Src/DC_Motor.c:29:6:DCMOTOR_RotateCounterClockWise	16	static
+../Core/Src/DC_Motor.c:56:6:DCMOTOR_RotateClockwise	16	static
+../Core/Src/DC_Motor.c:81:6:DCMOTOR_Stop	16	static

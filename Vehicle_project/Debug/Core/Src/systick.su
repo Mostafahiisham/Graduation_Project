@@ -1,0 +1,14 @@
+../Core/Src/systick.c:17:6:SYSTICK_Init	4	static
+../Core/Src/systick.c:39:6:SYSTICK_InterruptEnable	4	static
+../Core/Src/systick.c:46:6:SYSTICK_InterruptDisable	4	static
+../Core/Src/systick.c:54:6:SYSTICK_Start	16	static
+../Core/Src/systick.c:63:6:SYSTICK_Delay_ms	16	static
+../Core/Src/systick.c:78:6:SYSTICK_Delay_Us	16	static
+../Core/Src/systick.c:93:4:SYSTICK_ReadFlag	16	static
+../Core/Src/systick.c:102:6:SYSTICK_CounterDisable	4	static
+../Core/Src/systick.c:109:6:SYSTICK_CounterEnable	4	static
+../Core/Src/systick.c:116:6:SYSTICK_CallBackms	16	static
+../Core/Src/systick.c:122:6:SYSTICK_CallBackus	16	static
+../Core/Src/systick.c:131:5:SYSTICK_RemainingTime	4	static
+../Core/Src/systick.c:139:5:SYSTICK_ElapsedTime	4	static
+../Core/Src/systick.c:146:6:SysTick_Handler	8	static

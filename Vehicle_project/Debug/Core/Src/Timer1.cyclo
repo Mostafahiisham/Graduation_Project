@@ -1,0 +1,8 @@
+Timer1.c:13:6:TIMER1_Start	1
+Timer1.c:55:6:TIMER1_BusyWait_Delay	2
+Timer1.c:61:6:TIMER1_Interrupt_State	3
+Timer1.c:74:6:TIMER1_CallBack	1
+Timer1.c:81:6:TIMER1_SetOutputCompareMode	5
+Timer1.c:115:6:TIMER1_SetInputCaptureUnit	5
+Timer1.c:165:5:TIMER1_GetCapture	6
+Timer1.c:198:6:TIM1_UP_TIM10_IRQHandler	1

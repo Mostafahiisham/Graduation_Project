@@ -1,0 +1,3 @@
+../Core/Src/MRCC_Prg.c:16:6:RCC_VInit	4	static
+../Core/Src/MRCC_Prg.c:46:6:RCC_VEnableClkPeripheral	16	static
+../Core/Src/MRCC_Prg.c:82:6:RCC_VDisableClkPeripheral	16	static

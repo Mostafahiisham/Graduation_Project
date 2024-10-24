@@ -1,0 +1,11 @@
+../Core/Src/Mgpio.c:15:6:GPIO_SetMode	16	static
+../Core/Src/Mgpio.c:42:6:GPIO_SetOutputMode	16	static
+../Core/Src/Mgpio.c:66:6:GPIO_SetOutputSpeed	16	static
+../Core/Src/Mgpio.c:91:6:GPIO_SetPinValue	16	static
+../Core/Src/Mgpio.c:114:6:GPIO_SetPullType	16	static
+../Core/Src/Mgpio.c:139:6:GPIO_GetPinValue	16	static
+../Core/Src/Mgpio.c:161:6:GPIO_TogglePinValue	16	static
+../Core/Src/Mgpio.c:180:6:GPIO_SetPortValue	16	static
+../Core/Src/Mgpio.c:198:6:GPIO_SetPortMode	16	static
+../Core/Src/Mgpio.c:217:6:GPIO_SetAtomicPinValue	16	static
+../Core/Src/Mgpio.c:279:6:GPIO_SetAlternateFunc	24	static
