@@ -86,8 +86,8 @@ class EncoderPublisher(Node):
             self.get_logger().error(f"GPIO initialization failed: {str(e)}")
             raise RuntimeError("GPIO initialization failed")
         
-        timer_period = 1.0 / self.SAMPLE_RATE
-        self.timer = self.create_timer(timer_period, self.timer_callback)          
+        #timer_period = 1.0 / self.SAMPLE_RATE
+        #self.timer = self.create_timer(timer_period, self.timer_callback)          
 		
 		
         timer_period = 1.0 / self.SAMPLE_RATE
