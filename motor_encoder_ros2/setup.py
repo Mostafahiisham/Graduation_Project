@@ -20,6 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+							'talker = motor_encoder_ros2.encoder_publisher:main',
+							'listener = motor_encoder_ros2.encoder_subscriber:main',
         ],
     },
 )
