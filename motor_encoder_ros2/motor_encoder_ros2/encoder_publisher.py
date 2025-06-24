@@ -1,13 +1,13 @@
 import rclpy
 from rclpy.node import Node
-from pigpio import pi
+import RPi.GPIO as GPIO
 from collections import deque
 from std_msgs.msg import Float32MultiArray
 
 #Motor Monitoring Class
 class MotorMonitor :
-    def __init__(self,pi,a_pin,b_pin):
-        self.pi = pi
+    def __init__(self,a_pin,b_pin):
+        
         self.a_pin = a_pin
         self.b_pin = b_pin
         self.count = 0
@@ -15,18 +15,19 @@ class MotorMonitor :
         self.rpm_history = deque(maxlen=WINDOW_SIZE)
     
         #Setup GPIO
-        pi.set_mode(a_pin , pigpio.INPUT)
-        pi.set_mode(b_pin , pigpio.INPUT)
-        pi.set_pull_up_down(a_pin , pigpio.PUD_UP)
-        pi.set_pull_up_down(b_pin , pigpio.PUD_UP)
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(a_pin,GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(b_pin,GPIO.IN, pull_up_down=GPIO.PUD_UP)
     
     
         #Callback on rising edge of A channel
-        self.cb = pi.callback(a_pin, pigpio.RISING_EDGE, self._pulse_callback)
+        #self.cb = pi.callback(a_pin, pigpio.RISING_EDGE, self._pulse_callback)
+		GPIO.add_event_detect(a_pin, GPIO.RISING, callback=self._pulse_callback)
     
     def _pulse_callback(self,gpio,level,tick):
         #Read B channel to determine direction
-        b_state = self.pi.read(self.b_pin)
+        #b_state = self.pi.read(self.b_pin)
+		b_state = GPIO.input(self.b_pin)
         self.count += 1 if b_state else -1
     
     def update_rpm(self,PPR,SAMPLE_RATE):
@@ -39,7 +40,8 @@ class MotorMonitor :
     
     
     def cleanup(self):
-        self.cb.cancel()
+        #self.cb.cancel()
+		GPIO.remove_event_detect(self.a_pin)
         
 class EncoderPublisher(Node):
     def __init__(self):
@@ -69,15 +71,25 @@ class EncoderPublisher(Node):
         # 25       #Channel A-Motor4
         # 8        #Channel B-Motor4
         
-        self.pi = pi()
-        if not self.pi.connected:
-            self.get_logger().error("Failed to connect to pigpio daemon")
-            raise RuntimeError("Pigpio connection failed")
+        #self.pi = pi()
+        #if not self.pi.connected:
+        #    self.get_logger().error("Failed to connect to pigpio daemon")
+        #    raise RuntimeError("Pigpio connection failed")
         
         
-        self.motors = {id: MotorMonitor(self.pi, pins['A'], pins['B']) 
-                      for id, pins in self.MOTORS.items()}
+        #self.motors = {id: MotorMonitor(self.pi, pins['A'], pins['B']) 
+        #              for id, pins in self.MOTORS.items()}
+        try:
+            self.motors = {id: MotorMonitor(pins['A'], pins['B']) 
+                          for id, pins in self.MOTORS.items()}
+        except Exception as e:
+            self.get_logger().error(f"GPIO initialization failed: {str(e)}")
+            raise RuntimeError("GPIO initialization failed")
         
+        timer_period = 1.0 / self.SAMPLE_RATE
+        self.timer = self.create_timer(timer_period, self.timer_callback)          
+		
+		
         timer_period = 1.0 / self.SAMPLE_RATE
         self.timer = self.create_timer(timer_period, self.timer_callback)      
     
@@ -94,7 +106,7 @@ class EncoderPublisher(Node):
     def destroy_node(self):
         for motor in self.motors.values():
             motor.cleanup()
-        self.pi.stop()
+        GPIO.cleanup()
         super().destroy_node()
 def main(args=None):
     rclpy.init(args=args)
