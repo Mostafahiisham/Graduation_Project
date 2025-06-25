@@ -19,15 +19,14 @@ class MotorMonitor :
         GPIO.setup(a_pin,GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(b_pin,GPIO.IN, pull_up_down=GPIO.PUD_UP)
     
-    
         #Callback on rising edge of A channel
         #self.cb = pi.callback(a_pin, pigpio.RISING_EDGE, self._pulse_callback)
-		GPIO.add_event_detect(a_pin, GPIO.RISING, callback=self._pulse_callback)
+        GPIO.add_event_detect(a_pin, GPIO.RISING, callback=self._pulse_callback)
     
     def _pulse_callback(self,gpio,level,tick):
         #Read B channel to determine direction
         #b_state = self.pi.read(self.b_pin)
-		b_state = GPIO.input(self.b_pin)
+        b_state = GPIO.input(self.b_pin)
         self.count += 1 if b_state else -1
     
     def update_rpm(self,PPR,SAMPLE_RATE):
@@ -41,7 +40,7 @@ class MotorMonitor :
     
     def cleanup(self):
         #self.cb.cancel()
-		GPIO.remove_event_detect(self.a_pin)
+        GPIO.remove_event_detect(self.a_pin)
         
 class EncoderPublisher(Node):
     def __init__(self):
