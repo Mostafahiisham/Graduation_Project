@@ -88,4 +88,10 @@ def generate_launch_description():
             name='slam_toolbox',
             parameters=[{'use_sim_time': use_sim_time}]
         ),
+        Node(
+            package='encoder_odometry',
+            executable='odometry_subscriber',
+            name='encoder_odometry',
+            parameters=[{'use_sim_time': use_sim_time}]
+        ),
     ])
