@@ -12,7 +12,7 @@ class MotorMonitor :
         self.b_pin = b_pin
         self.count = 0
         self.last_count = 0
-        self.rpm_history = deque(maxlen=WINDOW_SIZE)
+        self.rpm_history = deque(maxlen=10)
     
         #Setup GPIO
         GPIO.setmode(GPIO.BCM)
